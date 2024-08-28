@@ -2,9 +2,11 @@ using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using WebApp;
-Console.WriteLine(111);
+using WebApp.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var Configuration = new ConfigurationBuilder()
@@ -13,6 +15,8 @@ var Configuration = new ConfigurationBuilder()
 		.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
 		.AddEnvironmentVariables()
 		.Build();
+
+var ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services?.AddSingleton<IBlockListService, BlockListService>();
 builder.Services?.AddMemoryCache();
@@ -80,18 +84,17 @@ builder.Services?.AddAuthentication(CookieAuthenticationDefaults.AuthenticationS
 	options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
-//builder.Services?.AddKendo();
-//builder.Services?.AddDbContext<ApplicationDbContext>(options =>
-//{
-//	options.UseMySql(ConnectionString, ServerVersion.AutoDetect(ConnectionString));
-//});
+builder.Services?.AddDbContext<ApplicationDbContext>(options =>
+{
+	options.UseMySql(ConnectionString, ServerVersion.AutoDetect(ConnectionString));
+});
 
-//builder.Services?.AddIdentity<ApplicationUser, IdentityRole>(options =>
-//{
-//	options.SignIn.RequireConfirmedAccount = true;
-//})
-//.AddEntityFrameworkStores<ApplicationDbContext>()
-//.AddDefaultTokenProviders();
+builder.Services?.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+	options.SignIn.RequireConfirmedAccount = true;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders();
 
 // Add services to the container.
 builder.Services?.AddControllersWithViews();
