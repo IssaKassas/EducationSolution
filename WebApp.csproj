@@ -6,4 +6,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\img\demos\.DS_Store" />
+    <None Include="wwwroot\img\demos\medical-2\.DS_Store" />
+    <None Include="wwwroot\img\demos\medical-2\gallery\.DS_Store" />
+    <None Include="wwwroot\img\demos\medical-2\logos\.DS_Store" />
+    <None Include="wwwroot\img\demos\medical-2\slides\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCoreRateLimit" Version="5.0.0" />
+  </ItemGroup>
+
 </Project>
