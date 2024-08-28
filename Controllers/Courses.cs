@@ -9,11 +9,6 @@ namespace WebApp.Controllers
 			return View();
 		}
 
-		public IActionResult Index(string id)
-		{
-			return View();
-		}
-
 		public IActionResult Details(string id)
 		{
 			return View("Details");
