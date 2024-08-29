@@ -1,6 +1,10 @@
-using WebApp.Models;
+using Dapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using WebApp.Models;
+
 
 namespace WebApp.Controllers
 {
@@ -15,7 +19,13 @@ namespace WebApp.Controllers
 
         public IActionResult Index()
         {
-			Console.WriteLine(2222);
+            using(var connection = new MySqlConnection(Program.ConnectionString))
+            {
+                var sql = "select id, course_name from dtbl_courses;";
+                var courses = connection.Query<CoursesModel>(sql).ToList();
+                Console.WriteLine($"Count:{courses.Count}");
+                connection.Close();
+            }
 
 			return View();
         }
