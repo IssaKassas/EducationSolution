@@ -2,11 +2,16 @@
 
 namespace WebApp.Controllers
 {
-	public class About : Controller
+	public class CoursesController : Controller
 	{
 		public IActionResult Index()
 		{
 			return View();
+		}
+
+		public IActionResult Details(string id)
+		{
+			return View("Details");
 		}
 	}
 }

@@ -18,28 +18,23 @@ namespace WebApp.Repositories
 
 			public int available_courses { get; set; }
 
-			public string? Image { get; set; }
+			public string? image_instructor { get; set; }
 
 			public string? cover_letter { get; set; }
 		}
 
-
-		public static List<CoursesModel?>? GetCourses()
+		public static List<Model?>? GetInstrucctors()
 		{
 			SimpleCRUD.SetDialect(SimpleCRUD.Dialect.MySQL);
-			List<CoursesModel?>? result = null;
+			List<Model?>? result = null;
 
-			var sql = @"
-				SELECT * FROM dtbl_courses AS dc
-				INNER JOIN dtbl_instructors AS di
-				ON dc.instructor_id = di.Id
-			";
+			var sql = "SELECT * FROM dtbl_instructors";
 
 			try
 			{
 				using (IDbConnection conn = new MySqlConnection(Program.ConnectionString))
 				{
-					result = conn.GetList<CoursesModel?>(sql, new {}).ToList();
+					result = conn.Query<Model?>(sql, new {}).ToList();
 				}
 			}
 

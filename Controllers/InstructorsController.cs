@@ -2,7 +2,7 @@
 
 namespace WebApp.Controllers
 {
-	public class Instructors : Controller
+	public class InstructorsController : Controller
 	{
 		public IActionResult Index()
 		{

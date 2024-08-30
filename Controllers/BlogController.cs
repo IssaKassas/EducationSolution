@@ -2,7 +2,7 @@
 
 namespace WebApp.Controllers
 {
-	public class Blog : Controller
+	public class BlogController : Controller
 	{
 		public IActionResult Index()
 		{
