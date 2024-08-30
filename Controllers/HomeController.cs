@@ -19,13 +19,13 @@ namespace WebApp.Controllers
 
         public IActionResult Index()
         {
-            using(var connection = new MySqlConnection(Program.ConnectionString))
-            {
-                var sql = "select id, course_name from dtbl_courses;";
-                var courses = connection.Query<CoursesModel>(sql).ToList();
-                Console.WriteLine($"Count:{courses.Count}");
-                connection.Close();
-            }
+            //using(var connection = new MySqlConnection(Program.ConnectionString))
+            //{
+            //    var sql = "select id, course_name from dtbl_courses;";
+            //    var courses = connection.Query<CoursesModel>(sql).ToList();
+            //    Console.WriteLine($"Count:{courses.Count}");
+            //    connection.Close();
+            //}
 
 			return View();
         }

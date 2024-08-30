@@ -1,5 +1,8 @@
-﻿@{
+﻿
+@{
 	ViewData["Title"] = "Courses";
+
+	var courses = RepositoryCourses.GetCourses();
 }
 
 <partial name="~/Views/Shared/PageHeader.cshtml" />
@@ -13,249 +16,36 @@
 				<div class="col-lg-9 mt-0">
 
 					<div class="row">
-						<div class="col-md-4 mb-4 pb-1">
-							<div class="card custom-card-courses border-radius-0 hover-effect-1">
-								<div class="p-relative">
-									<a asp-controller="Courses" asp-action="Details" class="text-color-secondary" title="">
-										<img class="card-img-top border-radius-0" src="~/img/demos/education/courses/course-1.jpg" alt="" />
-									</a>
-									<div class="custom-card-courses-author">
-										<div class="img-thumbnail img-thumbnail-no-borders">
-											<img src="img/avatars/avatar.jpg" class="rounded-circle" alt="">
+						@foreach(var course in courses)
+						{
+							<div class="col-md-4 mb-4 pb-1">
+								<div class="card custom-card-courses border-radius-0 hover-effect-1">
+									<div class="p-relative">
+										<a asp-controller="Courses" asp-action="Details" class="text-color-secondary" title="">
+											<img class="card-img-top border-radius-0" src="~/img/demos/education/courses/@course?.image_course" alt="" />
+										</a>
+										<div class="custom-card-courses-author">
+											<div class="img-thumbnail img-thumbnail-no-borders">
+												<img src="img/avatars/avatar.jpg" class="rounded-circle" alt="">
+											</div>
+										</div>
+									</div>
+									<div class="card-body">
+										<p class="mb-0 text-1 p-relative top-5 text-uppercase">@course?.name_instructor</p>
+										<h4 class="mb-3 text-color-secondary"><a asp-controller="Courses" asp-action="Details" asp-route-id="1" class="text-color-secondary" title="">@course?.name_course</a></h4>
+
+										<div class="float-end">
+											<strong class="text-primary text-5">$@course?.price</strong>
+										</div>
+
+										<div class="text-2">
+											<span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> @course?.number_users </span>
+											<span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> @course?.number_comments </span>
 										</div>
 									</div>
 								</div>
-								<div class="card-body">
-									<p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-									<h4 class="mb-3 text-color-secondary"><a asp-controller="Courses" asp-action="Details" asp-route-id="1" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-									<div class="float-end">
-										<strong class="text-primary text-5">$79</strong>
-									</div>
-
-									<div class="text-2">
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-									</div>
-								</div>
 							</div>
-						</div>
-						<div class="col-md-4 mb-4 pb-1">
-							<div class="card custom-card-courses border-radius-0 hover-effect-1">
-								<div class="p-relative">
-									<a href="demo-education-courses-details.html" class="text-color-secondary" title="">
-										<img class="card-img-top border-radius-0" src="img/demos/education/courses/course-2.jpg" alt="" />
-									</a>
-									<div class="custom-card-courses-author">
-										<div class="img-thumbnail img-thumbnail-no-borders">
-											<img src="img/avatars/avatar-2.jpg" class="rounded-circle" alt="">
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-									<h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-									<div class="float-end">
-										<strong class="text-primary text-5">$59</strong>
-									</div>
-
-									<div class="text-2">
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 mb-4 pb-1">
-							<div class="card custom-card-courses border-radius-0 hover-effect-1">
-								<div class="p-relative">
-									<a href="demo-education-courses-details.html" class="text-color-secondary" title="">
-										<img class="card-img-top border-radius-0" src="img/demos/education/courses/course-3.jpg" alt="" />
-									</a>
-									<div class="custom-card-courses-author">
-										<div class="img-thumbnail img-thumbnail-no-borders">
-											<img src="img/avatars/avatar-3.jpg" class="rounded-circle" alt="">
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-									<h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-									<div class="float-end">
-										<strong class="text-primary text-5">$29</strong>
-									</div>
-
-									<div class="text-2">
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 mb-4 pb-1">
-							<div class="card custom-card-courses border-radius-0 hover-effect-1">
-								<div class="p-relative">
-									<a href="demo-education-courses-details.html" class="text-color-secondary" title="">
-										<img class="card-img-top border-radius-0" src="img/demos/education/courses/course-4.jpg" alt="" />
-									</a>
-									<div class="custom-card-courses-author">
-										<div class="img-thumbnail img-thumbnail-no-borders">
-											<img src="img/avatars/avatar-2.jpg" class="rounded-circle" alt="">
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-									<h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-									<div class="float-end">
-										<strong class="text-primary text-5">$19</strong>
-									</div>
-
-									<div class="text-2">
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 mb-4 pb-1">
-							<div class="card custom-card-courses border-radius-0 hover-effect-1">
-								<div class="p-relative">
-									<a href="demo-education-courses-details.html" class="text-color-secondary" title="">
-										<img class="card-img-top border-radius-0" src="img/demos/education/courses/course-1.jpg" alt="" />
-									</a>
-									<div class="custom-card-courses-author">
-										<div class="img-thumbnail img-thumbnail-no-borders">
-											<img src="img/avatars/avatar.jpg" class="rounded-circle" alt="">
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-									<h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-									<div class="float-end">
-										<strong class="text-primary text-5">$79</strong>
-									</div>
-
-									<div class="text-2">
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 mb-4 pb-1">
-							<div class="card custom-card-courses border-radius-0 hover-effect-1">
-								<div class="p-relative">
-									<a href="demo-education-courses-details.html" class="text-color-secondary" title="">
-										<img class="card-img-top border-radius-0" src="img/demos/education/courses/course-2.jpg" alt="" />
-									</a>
-									<div class="custom-card-courses-author">
-										<div class="img-thumbnail img-thumbnail-no-borders">
-											<img src="img/avatars/avatar-2.jpg" class="rounded-circle" alt="">
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-									<h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-									<div class="float-end">
-										<strong class="text-primary text-5">$59</strong>
-									</div>
-
-									<div class="text-2">
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 mb-4 pb-1">
-							<div class="card custom-card-courses border-radius-0 hover-effect-1">
-								<div class="p-relative">
-									<a href="demo-education-courses-details.html" class="text-color-secondary" title="">
-										<img class="card-img-top border-radius-0" src="img/demos/education/courses/course-3.jpg" alt="" />
-									</a>
-									<div class="custom-card-courses-author">
-										<div class="img-thumbnail img-thumbnail-no-borders">
-											<img src="img/avatars/avatar-3.jpg" class="rounded-circle" alt="">
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-									<h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-									<div class="float-end">
-										<strong class="text-primary text-5">$29</strong>
-									</div>
-
-									<div class="text-2">
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 mb-4 pb-1">
-							<div class="card custom-card-courses border-radius-0 hover-effect-1">
-								<div class="p-relative">
-									<a href="demo-education-courses-details.html" class="text-color-secondary" title="">
-										<img class="card-img-top border-radius-0" src="img/demos/education/courses/course-4.jpg" alt="" />
-									</a>
-									<div class="custom-card-courses-author">
-										<div class="img-thumbnail img-thumbnail-no-borders">
-											<img src="img/avatars/avatar-2.jpg" class="rounded-circle" alt="">
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-									<h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-									<div class="float-end">
-										<strong class="text-primary text-5">$19</strong>
-									</div>
-
-									<div class="text-2">
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 mb-4 pb-1">
-							<div class="card custom-card-courses border-radius-0 hover-effect-1">
-								<div class="p-relative">
-									<a href="demo-education-courses-details.html" class="text-color-secondary" title="">
-										<img class="card-img-top border-radius-0" src="img/demos/education/courses/course-1.jpg" alt="" />
-									</a>
-									<div class="custom-card-courses-author">
-										<div class="img-thumbnail img-thumbnail-no-borders">
-											<img src="img/avatars/avatar.jpg" class="rounded-circle" alt="">
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-									<h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-									<div class="float-end">
-										<strong class="text-primary text-5">$79</strong>
-									</div>
-
-									<div class="text-2">
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-										<span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-									</div>
-								</div>
-							</div>
-						</div>
+						}
 					</div>
 
 					<div class="row">
