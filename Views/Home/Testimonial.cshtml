@@ -1,0 +1,43 @@
+﻿@{
+	var testimonials = RepositoryStudents.GetTestimonials();
+}
+
+<section class="section custom-bg-color-grey-1 border-0 m-0">
+	<div class="container position-relative my-4">
+		<div class="custom-element custom-element-pos-2 appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="200">
+			<div class="opacity-2" data-plugin-float-element data-plugin-options="{'startPos': 'bottom', 'speed': 0.8, 'transition': true, 'transitionDuration': 3000}">
+				<img class="icon-animated" width="157" height="157" src="img/demos/education/elements/element-1.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-primary'}" />
+			</div>
+		</div>
+
+		<div class="row mb-4">
+			<div class="col text-center">
+				<div class="overflow-hidden">
+					<h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-3-5 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="300">What Students Say</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="350">
+				<div class="owl-carousel owl-theme nav-style-1 nav-outside nav-font-size-lg custom-nav-secondary mb-0" data-plugin-options="{'responsive': {'576': {'items': 1}, '768': {'items': 1}, '992': {'items': 1}, '1200': {'items': 1}}, 'loop': true, 'nav': true, 'dots': false, 'margin': 20}">			
+					@foreach(var testimonial in testimonials)
+					{
+						<div class="px-lg-5 mx-lg-5">
+							<div class="testimonial testimonial-style-2 testimonial-with-quotes testimonial-quotes-primary mb-0">
+								<div class="testimonial-author">
+									<img src="~/img/students/@testimonial?.student_image" class="img-fluid rounded-circle" alt="">
+								</div>
+								<blockquote>
+									<p class="mb-0 custom-font-1 fst-italic text-4 line-height-7">@testimonial?.text.</p>
+								</blockquote>
+								<div class="testimonial-author">
+									<p><strong class="font-weight-bold">@testimonial?.instructor_name</strong></p>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

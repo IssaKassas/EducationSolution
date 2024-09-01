@@ -13,9 +13,9 @@ namespace WebApp.Repositories
 			[Key]
 			public int Id { get; set; }
 
-			public string? name_instructor { get; set; }
+			public string? instructor_name { get; set; }
 
-			public string? image_course { get; set; }
+			public string? course_image { get; set; }
 
 			public double price { get; set; }
 
@@ -24,6 +24,8 @@ namespace WebApp.Repositories
 			public int number_users { get; set; }
 
 			public int number_comments { get; set; }
+
+			public int category_id { get; set; }
 		}
 
 		public static List<CoursesModel?>? GetCourses()
@@ -44,10 +46,33 @@ namespace WebApp.Repositories
 					result = conn.Query<CoursesModel?>(sql).ToList();
 				}
 			}
-			catch (Exception ex)
+			catch (Exception ex) { Console.WriteLine(ex.Message); }
+
+			return result;
+		}
+
+		public static List<CoursesModel?>? GetPopular()
+		{
+			SimpleCRUD.SetDialect(SimpleCRUD.Dialect.MySQL);
+			List<CoursesModel?>? result = null;
+
+			try
 			{
-				Console.WriteLine(ex.Message);
+				using (var conn = new MySqlConnection(Program.ConnectionString))
+				{
+					var sql = @"
+						SELECT * 
+						FROM dtbl_courses AS dc
+						INNER JOIN dtbl_instructors AS di 
+						ON dc.instructor_id = di.Id
+						ORDER BY dc.number_users DESC
+						LIMIT 5;
+					";
+
+					result = conn.Query<CoursesModel?>(sql).ToList();
+				}
 			}
+			catch (Exception ex) { Console.WriteLine(ex.Message); }
 
 			return result;
 		}

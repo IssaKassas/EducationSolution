@@ -11,11 +11,14 @@ internal class Program
 {
     public static string? ConnectionString { get; set; }
 
-    private static void Main(string[] args)
+	public static IConfiguration? Configuration { get; set; }
+
+
+	private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        var Configuration = new ConfigurationBuilder()
+         Configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)

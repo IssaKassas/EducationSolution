@@ -1,6 +1,7 @@
 ﻿@{
 	ViewData["Title"] = "Courses";
 	var courses = RepositoryCourses.GetCourses();
+	var categories = RepositoryCategories.GetCategories();
 }
 
 <partial name="~/Views/Shared/PageHeader.cshtml" />
@@ -20,7 +21,7 @@
 								<div class="card custom-card-courses border-radius-0 hover-effect-1">
 									<div class="p-relative">
 										<a asp-controller="Courses" asp-action="Details" class="text-color-secondary" title="">
-											<img class="card-img-top border-radius-0" src="~/img/demos/education/courses/@course?.image_course" alt="" />
+											<img class="card-img-top border-radius-0" src="~/img/demos/education/courses/@course?.course_image" alt="" />
 										</a>
 										<div class="custom-card-courses-author">
 											<div class="img-thumbnail img-thumbnail-no-borders">
@@ -29,8 +30,8 @@
 										</div>
 									</div>
 									<div class="card-body">
-										<p class="mb-0 text-1 p-relative top-5 text-uppercase">@course?.name_instructor</p>
-										<h4 class="mb-3 text-color-secondary"><a asp-controller="Courses" asp-action="Details" asp-route-id="1" class="text-color-secondary" title="">@course?.name_course</a></h4>
+										<p class="mb-0 text-1 p-relative top-5 text-uppercase">@course?.instructor_name</p>
+										<h4 class="mb-3 text-color-secondary"><a asp-controller="Courses" asp-action="Details" asp-route-id="1" class="text-color-secondary" title="">@course?.course_name</a></h4>
 
 										<div class="float-end">
 											<strong class="text-primary text-5">$@course?.price</strong>
@@ -62,31 +63,28 @@
 
 				<!-- Sidebar -->
 				<div class="col-lg-3 position-relative">
-
 					<div class="mt-2 mb-4 pb-2">
 						<h2 class="text-color-secondary font-weight-semi-bold text-5 line-height-1 mb-3">Categories</h2>
-
 						<ul class="nav nav-list flex-column p-relative right-9">
-							<li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Design (2)</a></li>
-							<li class="nav-item">
-								<a class="nav-link bg-transparent border-0 active" href="#">Web Development (4)</a>
-								<ul>
-									<li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Data Science</a></li>
-									<li class="nav-item"><a class="nav-link bg-transparent border-0 active text-color-primary" href="#">Mobile Development</a></li>
-									<li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Software Testing</a></li>
-									<li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Development Tools</a></li>
-								</ul>
-							</li>
-							<li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Personal Development (3)</a></li>
-							<li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Business (2)</a></li>
-							<li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Photography (1)</a></li>
+							@foreach(var category in categories)
+							{
+								var coursesList = category?.courses?.Split(',');
+								
+								<li class="nav-item">
+									<a class="nav-link bg-transparent border-0 active" href="#">@category?.category_name (@category?.number_courses)</a>
+									<ul>
+										@foreach (var course in coursesList)
+										{							
+											<li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">@course</a></li>
+										}
+									</ul>
+								</li>
+							}
 						</ul>
 					</div>
 
 					<div class="mt-2 mb-4 pb-2">
-
 						<h2 class="text-color-secondary font-weight-semi-bold text-5 line-height-1 mb-3">Latest Courses</h2>
-
 						<ul class="simple-post-list">
 							<li class="border-0">
 								<div class="post-image">

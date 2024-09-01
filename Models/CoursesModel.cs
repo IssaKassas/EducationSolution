@@ -7,9 +7,9 @@ namespace WebApp.Models
         [Key]
         public int Id { get; set; }
 
-        public string? name_course { get; set; }
+        public string? course_name { get; set; }
 
-        public string? image_course { get; set; }
+        public string? course_image { get; set; }
 
         public double price { get; set; }
 
@@ -17,6 +17,8 @@ namespace WebApp.Models
 
 		public int number_comments { get; set; }
 
-        public string? name_instructor { get; set; }
+        public string? instructor_name { get; set; }
+
+        public int category_id { get; set; }
 	}
 }
