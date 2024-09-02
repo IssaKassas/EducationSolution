@@ -1,48 +1,65 @@
 ﻿@{
-	var popular = RepositoryCourses.GetPopular();
+    var popular = RepositoryCourses.GetPopular();
 }
 
-<div class="row mb-4">
-	<div class="col text-center">
-		<div class="overflow-hidden">
-			<h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-3-5 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="300">Popular Courses</h2>
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="500">
-		<div class="owl-carousel owl-theme nav-style-1 nav-outside nav-font-size-lg custom-nav-secondary mb-0" data-plugin-options="{'responsive': {'576': {'items': 1}, '768': {'items': 2}, '992': {'items': 2}, '1200': {'items': 3}}, 'loop': true, 'nav': true, 'dots': false, 'margin': 20}">
-			
-			@foreach(var course in popular)
-			{
-				<div>
-					<div class="card custom-card-courses border-radius-0">
-						<div class="p-relative">
-							<a href="demo-education-courses-details.html" class="text-color-secondary" title="">
-								<img class="card-img-top border-radius-0" src="~/img/demos/education/courses/@course?.course_image" alt="" />
-							</a>
-							<div class="custom-card-courses-author">
-								<div class="img-thumbnail img-thumbnail-no-borders">
-									<img src="~/img/avatars/avatar.jpg" class="rounded-circle" alt="">
-								</div>
-							</div>
-						</div>
-						<div class="card-body">
-							<p class="mb-0 text-1 p-relative top-5 text-uppercase">@course?.instructor_name</p>
-							<h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">@course?.course_name</a></h4>
+<section class="section custom-bg-color-grey-1 border-0 m-0" id="courses">
+    <div class="container position-relative my-4">
 
-							<div class="float-end">
-								<strong class="text-primary text-5">$@course?.price</strong>
-							</div>
+        <div class="custom-element custom-element-pos-1 appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="200">
+            <div class="opacity-2" data-plugin-float-element data-plugin-options="{'startPos': 'bottom', 'speed': 0.8, 'transition': true, 'transitionDuration': 3000}">
+                <img class="icon-animated" width="157" height="157" src="img/demos/education/elements/element-1.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-primary'}" />
+            </div>
+        </div>
 
-							<div class="text-2">
-								<span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> @course?.number_users </span>
-								<span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> @course?.number_comments</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			}
-		</div>
-	</div>
-</div>
+        <div class="row mb-4">
+            <div class="col text-center">
+                <div class="overflow-hidden">
+                    <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-3-5 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="300">Popular Courses</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="500">
+                <div class="owl-carousel owl-theme nav-style-1 nav-outside nav-font-size-lg custom-nav-secondary mb-0" data-plugin-options="{'responsive': {'576': {'items': 1}, '768': {'items': 2}, '992': {'items': 2}, '1200': {'items': 3}}, 'loop': true, 'nav': true, 'dots': false, 'margin': 20}">
+
+                    @foreach (var course in popular)
+                    {
+                        <div>
+                            <div class="card custom-card-courses border-radius-0">
+                                <div class="p-relative">
+                                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                                        <img class="card-img-top border-radius-0" src="~/img/demos/education/courses/@course?.course_image" alt="" />
+                                    </a>
+                                    <div class="custom-card-courses-author">
+                                        <div class="img-thumbnail img-thumbnail-no-borders">
+                                            <img src="~/img/avatars/avatar.jpg" class="rounded-circle" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="mb-0 text-1 p-relative top-5 text-uppercase">@course?.instructor_name</p>
+                                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">@course?.course_name</a></h4>
+
+                                    <div class="float-end">
+                                        <strong class="text-primary text-5">$@course?.price</strong>
+                                    </div>
+
+                                    <div class="text-2">
+                                        <span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> @course?.number_users </span>
+                                        <span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> @course?.number_comments</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-2">
+            <div class="col text-center">
+                <a asp-controller="Courses" asp-action="Index" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3 mt-4 mb-2 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="350">VIEW ALL</a>
+            </div>
+        </div>
+    </div>
+</section>
