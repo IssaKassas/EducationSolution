@@ -43,5 +43,31 @@ namespace WebApp.Repositories
 
 			return result;
 		}
+
+		public static List<BlogsModel?>? GetBlogs()
+		{
+			SimpleCRUD.SetDialect(SimpleCRUD.Dialect.MySQL);
+			List<BlogsModel?>? result = null;
+
+			var sql = @"
+				SELECT *, db.Id AS blog_id 
+				FROM dtbl_instructors AS di
+				INNER JOIN dtbl_blogs AS db
+				ON db.instructor_id = di.Id
+				ORDER BY db.dob DESC LIMIT 3;
+			";
+
+			try
+			{
+				using (IDbConnection conn = new MySqlConnection(Program.ConnectionString))
+				{
+					result = conn.Query<BlogsModel?>(sql, new { }).ToList();
+				}
+			}
+
+			catch (Exception ex) { Console.WriteLine(ex.Message); }
+
+			return result;
+		}
 	}
 }

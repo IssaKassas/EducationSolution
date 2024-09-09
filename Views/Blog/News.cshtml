@@ -1,0 +1,43 @@
+﻿@{
+    var blogs = RepositoryInstructors.GetBlogs();
+}
+
+<section class="section bg-color-tertiary border-0 m-0">
+    <div class="container my-4">
+        <div class="row mb-4">
+            <div class="col text-center">
+                <div class="overflow-hidden">
+                    <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-3-5 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="300">Latest News</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row pb-3">
+            @foreach(var blog in blogs)
+            {
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <article class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
+                        <div class="card border-0 border-radius-0 box-shadow-1">
+                            <div class="card-body p-3 z-index-1">
+                                <a asp-controller="Blog" asp-action="Post" asp-route-id="@blog?.Blog_Id">
+                                    <img class="card-img-top border-radius-0 mb-2" src="img/demos/education/blog/@blog?.blog_image" alt="Card Image">
+                                </a>
+                                <p class="text-uppercase text-color-default text-1 my-2">
+                                    <time pubdate datetime="2023-01-10">@blog?.dob.ToString()</time>
+                                    <span class="opacity-3 d-inline-block px-2">|</span>
+                                    @blog?.number_comments Comments
+                                    <span class="opacity-3 d-inline-block px-2">|</span>
+                                    @blog?.instructor_name
+                                </p>
+                                <div class="card-body p-0">
+                                    <h4 class="card-title text-5 font-weight-semi-bold pb-1 mb-2"><a class="text-color-secondary text-decoration-none" href="demo-education-blog-post.html">Lorem ipsum dolor sit amet</a></h4>
+                                    <p class="card-text mb-2">@blog?.blog_text...</p>
+                                    <a asp-controller="Blog" asp-action="Post" asp-route-id="@blog?.Blog_Id" class="btn btn-link font-weight-semibold text-decoration-none text-2 ps-0">READ MORE</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+    </div>
+</section>
